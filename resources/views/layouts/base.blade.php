@@ -28,7 +28,7 @@
   @yield('css')
   @stack('css_in')
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="sidebar-mini sidebar-collapse">
 <div class="wrapper">
 
   <!-- Preloader -->
