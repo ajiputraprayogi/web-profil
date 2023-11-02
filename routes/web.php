@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MasterData\UserController;
+use App\Http\Controllers\MasterData\RolesController;
+use App\Http\Controllers\MasterData\PermissionsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,4 +25,6 @@ Route::prefix('backend')->group(function () {
     Auth::routes();
     Route::get('/home', [HomeController::class, 'dashboard'])->name('home');
     Route::resource('users', UserController::class);
+    Route::resource('roles', RolesController::class);
+    Route::resource('permissions', PermissionsController::class);
 });

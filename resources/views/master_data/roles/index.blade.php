@@ -11,7 +11,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Users</h1>
+                    <h1 class="m-0">Roles</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -40,7 +40,7 @@
                 <div class="card-header">
                     <h3 class="card-title mb-0">List Data</h3>
                     <div class="card-tools">
-                        <a href="{{url('/backend/users/create')}}">
+                        <a href="{{url('/backend/roles/create')}}">
                             <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i>
                                 Tambah
                                 Data
@@ -51,14 +51,12 @@
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table">
-                            <caption>List of users</caption>
+                            <caption>List of Roles</caption>
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Nama</th>
-                                    <th scope="col">username</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Role</th>
+                                    <th scope="col">Guard Name</th>
                                     <th scope="col">Aksi</th>
                                 </tr>
                             </thead>
@@ -66,15 +64,13 @@
                                 @php
                                     $no = 1;
                                 @endphp
-                                @foreach ($user as $row)
+                                @foreach ($roles as $row)
                                 <tr>
                                     <th scope="row">{{ $no++ }}</th>
-                                    <td>{{ $row->nama_lengkap }}</td>
                                     <td>{{ $row->name }}</td>
-                                    <td>{{ $row->email }}</td>
-                                    <td>{{ $row->role }}</td>
+                                    <td>{{ $row->guard_name }}</td>
                                     <td>
-                                        <a href="{{ url('/backend/users/' . $row->id . '/edit') }}" class="btn btn-success"><i class="fa fa-wrench"></i></a>
+                                        <a href="{{ url('/backend/roles/' . $row->id . '/edit') }}" class="btn btn-success"><i class="fa fa-wrench"></i></a>
                                         <button class="btn btn-danger" onclick="hapusdata(' {{ $row->id }} ')"><i class="fa fa-trash"></i></button>
                                     </td>
                                 </tr>
@@ -84,9 +80,7 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Nama</th>
-                                    <th scope="col">Username</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Role</th>
+                                    <th scope="col">Guard Name</th>
                                     <th scope="col">Aksi</th>
                                 </tr>
                             </tfoot>
@@ -104,5 +98,5 @@
 @endsection
 
 @push('js_in')
-    <script src="{{ asset('backend/master_data/users/index.js') }}"></script>
+    <script src="{{ asset('backend/master_data/roles/index.js') }}"></script>
 @endpush
