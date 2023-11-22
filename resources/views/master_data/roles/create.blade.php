@@ -1,9 +1,21 @@
 @extends('layouts.base')
 
 @section('css')
-    <link rel="stylesheet" href="{{asset('lte/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}">
-    <link rel="stylesheet" href="{{asset('lte/plugins/select2/css/select2.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('lte/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('lte/plugins/select2/css/select2.min.css') }}">
 @endsection
+
+<style>
+    .checkbox-lg .form-check-input {
+        top: .8rem;
+        scale: 1.4;
+        margin-right: 0.7rem;
+    }
+
+    .checkbox-lg .form-check-label {
+        padding-top: 13px;
+    }
+</style>
 
 @section('content')
     <!-- Content Header (Page header) -->
@@ -31,27 +43,61 @@
                 <div class="row">
                     <div class="col-12">
                         @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
                         @endif
                         <div class="card card-success">
                             <div class="card-header">
                                 <h3 class="card-title">Tambah Data</h3>
                             </div>
                             <form method="POST" role="form" enctype="multipart/form-data"
-                                action="{{url('/backend/roles')}}">
+                                action="{{ url('/backend/roles') }}">
                                 @csrf
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Nama</label>
-                                                <input type="text" class="form-control" name="nama" required autofocus>
+                                                <input type="text" class="form-control" name="nama" required
+                                                    autofocus>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="">Pilih Permissions</label>
+                                                <div class="row">
+                                                    @foreach ($permission_grup as $row_permission_grup)
+                                                        <div class="col-md-3">
+                                                            <div class="card card-secondary mb-0">
+                                                                <div class="card-header">
+                                                                    <h3 class="card-title">
+                                                                        {{ $row_permission_grup[0]->permission_grup }}</h3>
+                                                                </div>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                @foreach ($permissions as $row)
+                                                                    @if ($row->permission_grup == $row_permission_grup[0]->permission_grup)
+                                                                        <div class="form-check checkbox-lg">
+                                                                            <input class="form-check-input"
+                                                                                name="permissions[]" type="checkbox"
+                                                                                value="{{ $row->id }}"
+                                                                                id="{{ $row->id }}">
+                                                                            <label class="form-check-label text-bold"
+                                                                                for="{{ $row->id }}">
+                                                                                {{ $row->name }}
+                                                                            </label>
+                                                                        </div>
+                                                                    @endif
+                                                                @endforeach
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -76,5 +122,4 @@
 @endsection
 
 @push('js_in')
-
 @endpush
