@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MasterData\UserController;
 use App\Http\Controllers\MasterData\RolesController;
 use App\Http\Controllers\MasterData\PermissionsController;
@@ -19,9 +20,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('layouts.profile');
-});
+// Route::get('/', function () {
+//     // return view('welcome');
+    Route::get('/', [ProfileController::class,'index']);
+// });
 
 Route::prefix('backend')->group(function () {
     Auth::routes();
