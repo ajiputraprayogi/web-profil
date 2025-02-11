@@ -23,7 +23,7 @@ function hapusdata(kode) {
             });
             $.ajax({
                 type: 'DELETE',
-                url: '/backend/users/' + kode,
+                url: '/backend/portofolio/' + kode,
                 data: {
                     '_token': $('input[name=_token]').val(),
                 },
@@ -42,7 +42,7 @@ function hapusdata(kode) {
                         'Delete failed',
                         'error'
                     )
-                    location.reload();
+                    location.reloa();
                     // $('#list-data').DataTable().ajax.reload();
                 }
             });
